@@ -17,11 +17,11 @@ int interpolationSearch(int array[], int arraySize, int num){
     }
 
     if(array[position] < num){
-      last = position - 1;
+      first = position + 1;
     }
 
     if(array[position] > num){
-      first = position + 1;
+      last = position - 1;
     }
     
   }
@@ -29,9 +29,9 @@ int interpolationSearch(int array[], int arraySize, int num){
 }
 
 int main(){
-  int array[] = {10,20,30,40,50,60,70,80,90,100};
+  int array[] = {2, 5, 6, 8, 9, 10, 13, 15, 16, 20, 23, 25, 28, 32, 35, 39, 50, 52, 55, 58, 60};
   int arraySize = sizeof(array) / sizeof(array[0]);
-  int num = 30;
+  int num = 23;
 
   int result = interpolationSearch(array, arraySize, num);
 
