@@ -1,55 +1,44 @@
 #include <stdio.h>
 
-int interpolationSearch(int arr[], int arrSize, int num){
+int interpolationSearch(int array[], int arraySize, int num){
   int first = 0;
-  int last = arrSize - 1;
+  int last = arraySize - 1;
   int position;
-  
+  int attempts = 0;
 
-  while(first <= last && num <= arr[last] && num >= arr[first]){
-    
-    if(arr[first] == arr[last]){
-      if(arr[first] == num){
-        return first;
-      } else {
-        return -1;
-      }
-    }
+  while(first <= last && num >= array[first] && num <= array[last]){
 
-      position = first +
-        ((num - arr[first]) *
-        (last - first)) /
-        (arr[last] - arr[first]);
+    attempts++;
+    position = first + ((num - array[first]) * (last - first)) / (array[last] - array[first]);
 
-    if(arr[position] == num){
+    if(array[position] == num){
+      printf("%d attempts.\n", attempts);
       return position;
     }
 
-    if (arr[position] < num) {
-      first = position + 1;
-    } else {
+    if(array[position] < num){
       last = position - 1;
+    }
+
+    if(array[position] > num){
+      first = position + 1;
     }
     
   }
-
   return -1;
 }
 
-int main(void) {
-
+int main(){
   int array[] = {10,20,30,40,50,60,70,80,90,100};
   int arraySize = sizeof(array) / sizeof(array[0]);
-
-  int num = 90;
+  int num = 30;
 
   int result = interpolationSearch(array, arraySize, num);
 
   if(result == -1){
-    printf("Couldn't find %d on the array\n", num);
+    printf("Couldn't find the number %d at the array\n", num);
   } else{
-    printf("Number %d found on the index %d", num, result);
+    printf("number %d found at the index %d", num, result);
   }
-  
   return 0;
 }
